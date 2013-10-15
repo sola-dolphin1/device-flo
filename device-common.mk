@@ -46,8 +46,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
         LiveWallpapers \
         LiveWallpapersPicker \
-        VisualizationWallpapers \
-        librs_jni
+        VisualizationWallpapers
 
 PRODUCT_COPY_FILES += \
 	device/asus/flo/WCNSS_cfg.dat:system/vendor/firmware/wlan/prima/WCNSS_cfg.dat \
@@ -149,7 +148,6 @@ PRODUCT_CHARACTERISTICS := tablet,nosdcard
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PACKAGES += \
-	librs_jni \
 	com.android.future.usb.accessory
 
 # Filesystem management tools
@@ -279,6 +277,17 @@ PRODUCT_COPY_FILES += \
     device/asus/flo/nfc/libnfc-brcm-20791b05.conf:system/etc/libnfc-brcm-20791b05.conf
 
 PRODUCT_LOCALES := en_US es_US de_DE zh_CN
+
+# for Gecko
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.moz.has_home_button=0
+
+PRODUCT_COPY_FILES += \
+    device/asus/flo/volume.cfg:system/etc/volume.cfg
+
+# for Gecko to support bluedroid stack
+PRODUCT_PACKAGES += \
+    bluetooth.default
 
 $(call inherit-product, frameworks/native/build/tablet-7in-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, hardware/qcom/msm8960/msm8960.mk)
